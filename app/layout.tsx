@@ -36,7 +36,10 @@ export const metadata: Metadata = {
     description: 'Find out exactly why visitors leave without converting — and get a rewritten hero section instantly.',
   },
   verification: {
-    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    google: 'hSSiY8gP1kbW9s84_Jic5Vef_i4brETAn8RyeQwNTzQ',
+  },
+  other: {
+    'google-adsense-account': 'ca-pub-9844229485914412',
   },
 }
 
@@ -55,20 +58,16 @@ export default function RootLayout({
 
         {children}
 
-        {/* Google Analytics Placeholder */}
-        {process.env.NEXT_PUBLIC_GA_ID && (
-          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
-        )}
+        {/* Google Analytics */}
+        <GoogleAnalytics gaId="G-14RZRGXRY7" />
 
-        {/* Google AdSense Placeholder */}
-        {process.env.NEXT_PUBLIC_ADSENSE_ID && (
-          <Script
-            id="adsbygoogle-init"
-            strategy="afterInteractive"
-            crossOrigin="anonymous"
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_ID}`}
-          />
-        )}
+        {/* Google AdSense */}
+        <Script
+          id="adsbygoogle-init"
+          strategy="afterInteractive"
+          crossOrigin="anonymous"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9844229485914412"
+        />
       </body>
     </html>
   )
