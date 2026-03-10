@@ -1,26 +1,248 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --neo-yellow: #FBFF48;
+  --neo-pink: #FF70A6;
+  --neo-blue: #3B82F6;
+  --neo-green: #33FF57;
+  --neo-purple: #A855F7;
+  --neo-orange: #FF9F1C;
+  --neo-red: #FF2A2A;
+  --neo-black: #0a0a0a;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  cursor: none !important;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #FFFDF5;
+  color: #000;
+  font-family: var(--font-display);
+}
+
+/* ---- NOISE TEXTURE OVERLAY ---- */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.04;
+}
+
+/* ---- GRID BACKGROUND ---- */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* White NeoBrutalist dot grid — light-mode landing page */
+.neo-grid-bg {
+  background-color: #FFFDF5;
+  background-image:
+    radial-gradient(#000 1px, transparent 1px),
+    linear-gradient(to right, #e5e5e0 1px, transparent 1px),
+    linear-gradient(to bottom, #e5e5e0 1px, transparent 1px);
+  background-size: 40px 40px, 100px 100px, 100px 100px;
+}
+
+/* ---- MARQUEE ---- */
+.marquee-container {
+  overflow: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.marquee-container::-webkit-scrollbar {
+  display: none;
+}
+
+.marquee-content {
+  display: flex;
+  animation: marquee-scroll 30s linear infinite;
+  width: max-content;
+}
+
+.marquee-container:hover .marquee-content {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-content-slow {
+  display: flex;
+  animation: marquee-scroll 60s linear infinite;
+  width: max-content;
+}
+
+/* ---- REVEAL ANIMATIONS ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1), transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1), transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.reveal-left.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ---- GLITCH EFFECT ---- */
+.glitch-hover:hover {
+  animation: glitch 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+  color: #FF2A2A;
+}
+
+@keyframes glitch {
+  0% {
+    transform: translate(0)
+  }
+
+  20% {
+    transform: translate(-2px, 2px)
+  }
+
+  40% {
+    transform: translate(-2px, -2px)
+  }
+
+  60% {
+    transform: translate(2px, 2px)
+  }
+
+  80% {
+    transform: translate(2px, -2px)
+  }
+
+  100% {
+    transform: translate(0)
+  }
+}
+
+/* ---- HARD SHADOW (NeoBrutalist) ---- */
+.shadow-hard {
+  box-shadow: 4px 4px 0 #000;
+}
+
+.shadow-hard-yellow {
+  box-shadow: 6px 6px 0 #FBFF48;
+}
+
+.shadow-hard-red {
+  box-shadow: 6px 6px 0 #FF2A2A;
+}
+
+.shadow-hard-green {
+  box-shadow: 6px 6px 0 #33FF57;
+}
+
+/* ---- BLINK CURSOR ---- */
+.blink {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ---- FLOAT ANIMATION ---- */
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* ---- SPIN SLOW ---- */
+.spin-slow {
+  animation: spin 8s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---- PULSE GLOW ---- */
+.pulse-glow-yellow {
+  animation: pulseGlowYellow 2s ease-in-out infinite;
+}
+
+@keyframes pulseGlowYellow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(251, 255, 72, 0.3);
+  }
+
+  50% {
+    box-shadow: 0 0 40px rgba(251, 255, 72, 0.7);
+  }
+}
+
+/* ---- SCROLLBAR ---- */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FBFF48;
+  border: 1px solid #000;
+}
+
+/* ---- SELECTION ---- */
+::selection {
+  background: #FBFF48;
+  color: #000;
 }
