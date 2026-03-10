@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 const BOOT_LINES = [
     { text: 'INITIALISING_ROAST_ENGINE...', delay: 0, color: '#33FF57' },
     { text: 'LOADING_AI_MODEL: llama-3.3-70b', delay: 300, color: '#fff' },
-    { text: 'CONNECTING_TO_GROQ_API...........OK', delay: 600, color: '#33FF57' },
+    { text: 'CONNECTING_TO_AI_API.............OK', delay: 600, color: '#33FF57' },
     { text: 'SCRAPER_MODULE.....................READY', delay: 900, color: '#fff' },
     { text: 'BRUTALITY_LEVEL: MAXIMUM', delay: 1200, color: '#FF2A2A' },
     { text: 'MERCY_MODULE.......................DISABLED', delay: 1400, color: '#FF2A2A' },
@@ -126,7 +126,7 @@ export default function PageLoader({ onComplete }: { onComplete: () => void }) {
                 {`> SYS_BOOT @ ${new Date().toLocaleTimeString()}`}
             </div>
             <div className="absolute bottom-6 right-6 font-mono text-black/20 text-xs select-none hidden lg:block">
-                POWERED_BY_GROQ ▲
+                POWERED_BY_AI ▲
             </div>
 
             {/* Scanline effect */}

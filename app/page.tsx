@@ -35,7 +35,7 @@ const MARQUEE_ITEMS = [
   '✍️ INSTANT REWRITE',
   '🎯 MORE CONVERSIONS',
   '🚀 30 SECOND AUDIT',
-  '🧠 GROQ AI POWERED',
+  '🧠 AI POWERED',
 ]
 
 export default function Home() {
@@ -166,7 +166,7 @@ export default function Home() {
               style={{ boxShadow: '3px 3px 0 #000', transform: 'rotate(-1deg)' }}
             >
               <span className="font-mono font-black text-[#33FF57] bg-black px-2 mr-2 text-xs">●</span>
-              <span className="font-mono text-sm font-bold">AI_STATUS: ONLINE · GROQ_POWERED</span>
+              <span className="font-mono text-sm font-bold">AI_STATUS: ONLINE · AI_POWERED</span>
             </div>
 
             {/* Main headline */}
@@ -212,7 +212,7 @@ export default function Home() {
               {[
                 { num: '< 30s', label: 'to get roasted' },
                 { num: '100%', label: 'AI-generated' },
-                { num: '₹499', label: 'full unlock' },
+                { num: '₹49', label: 'per roast' },
               ].map((s, i) => (
                 <div key={i} className="text-center">
                   <div className="text-2xl font-black">{s.num}</div>
@@ -388,7 +388,7 @@ export default function Home() {
               style={{ boxShadow: '6px 6px 0 #FF2A2A' }}
             >
               <div className="inline-block bg-black text-[#FBFF48] font-mono font-black text-xs px-3 py-1 mb-6 border-2 border-black">
-                ₹499 · ONE-TIME
+                ₹49 · INSTANT
               </div>
               <h3 className="text-2xl font-black mb-6 uppercase border-b-2 border-black pb-3">What you get <span className="text-[#FF2A2A]">paid</span></h3>
               <ul className="space-y-4">
@@ -437,7 +437,7 @@ export default function Home() {
             </h2>
             <p className="font-mono text-gray-400 text-lg mb-10 max-w-lg mx-auto">
               Fix it in 30 seconds. No account needed.<br />
-              Free preview · Full unlock at ₹499.
+              Free preview · Full unlock at ₹49.
             </p>
             <Link
               href="/roast"
@@ -447,7 +447,7 @@ export default function Home() {
               🔥 ROAST MY LANDING PAGE →
             </Link>
             <p className="font-mono text-xs text-gray-600 mt-6">
-              Powered by Groq (llama-3.3-70b) · Results in ~15 seconds
+              Powered by Advanced AI · Results in ~15 seconds
             </p>
           </div>
         </section>

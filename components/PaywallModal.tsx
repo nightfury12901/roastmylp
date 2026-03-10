@@ -253,19 +253,6 @@ export default function PaywallModal({ roastId, onClose, onSuccess }: PaywallMod
                                     <div className="font-mono text-xs text-gray-400 mb-1">SINGLE ROAST</div>
                                     <div className={`font-black text-2xl ${plan === 'single' ? 'text-[#FBFF48]' : 'text-white'}`}>₹49</div>
                                 </button>
-
-                                <button
-                                    onClick={() => setPlan('pack')}
-                                    className={`relative border-2 p-3 text-left transition-all ${plan === 'pack' ? 'border-[#FBFF48] bg-[#FBFF48]/10' : 'border-white/20 hover:border-white/50'
-                                        }`}
-                                >
-                                    <div className="absolute -top-2 -right-2 bg-[#FF2A2A] text-white font-mono text-[9px] font-black px-1.5 py-0.5 border border-black transform rotate-6">
-                                        BEST VALUE
-                                    </div>
-                                    <div className="font-mono text-xs text-[#FBFF48] mb-1">20-ROAST PACK</div>
-                                    <div className={`font-black text-2xl ${plan === 'pack' ? 'text-[#FBFF48]' : 'text-white'}`}>₹499</div>
-                                    <div className="font-mono text-[9px] text-gray-500 mt-1">~₹25 per roast</div>
-                                </button>
                             </div>
 
                             {/* PROMO CODE */}
@@ -312,7 +299,7 @@ export default function PaywallModal({ roastId, onClose, onSuccess }: PaywallMod
                                     className="w-full mt-4 bg-[#FBFF48] text-black font-black text-lg py-4 border-2 border-black hover:bg-white transition-colors disabled:opacity-50"
                                     style={{ boxShadow: '4px 4px 0 #000' }}
                                 >
-                                    {loading ? 'PROCESSING...' : `PAY ${plan === 'pack' ? '₹499' : '₹49'} WITH RAZORPAY →`}
+                                    {loading ? 'PROCESSING...' : `PAY ₹49 WITH RAZORPAY →`}
                                 </button>
                             )}
 
