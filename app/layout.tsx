@@ -1,5 +1,8 @@
 import type { Metadata } from 'next'
 import { JetBrains_Mono, Space_Grotesk } from 'next/font/google'
+import Script from 'next/script'
+import { GoogleAnalytics } from '@next/third-parties/google'
+import CustomCursor from '@/components/CustomCursor'
 import './globals.css'
 
 const jetbrainsMono = JetBrains_Mono({
@@ -15,14 +18,25 @@ const spaceGrotesk = Space_Grotesk({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'https://roastmylp.com'),
   title: 'RoastMyLP — AI Landing Page Roast & Rewrite Tool',
   description:
     'Get your landing page brutally roasted by AI in 30 seconds. Find out exactly why visitors leave without converting — and get a rewritten hero section instantly.',
-  keywords: ['landing page audit', 'conversion rate optimization', 'CRO', 'landing page roast', 'AI copywriting'],
+  keywords: ['landing page audit', 'conversion rate optimization', 'CRO', 'landing page roast', 'AI copywriting', 'website review'],
   openGraph: {
-    title: 'RoastMyLP — AI Landing Page Roast & Rewrite',
-    description: 'Get your landing page brutally roasted by AI in 30 seconds.',
+    title: 'RoastMyLP — Brutal AI Landing Page Roasts',
+    description: 'Find out exactly why visitors leave without converting — and get a rewritten hero section instantly.',
+    url: 'https://roastmylp.com',
+    siteName: 'RoastMyLP',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'RoastMyLP — Brutal AI Landing Page Roasts',
+    description: 'Find out exactly why visitors leave without converting — and get a rewritten hero section instantly.',
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
   },
 }
 
@@ -37,56 +51,24 @@ export default function RootLayout({
         className={`${jetbrainsMono.variable} ${spaceGrotesk.variable} antialiased`}
         style={{ cursor: 'none' }}
       >
-        {/* Custom cursor */}
-        <div id="cursor" className="pointer-events-none fixed z-[9999] w-6 h-6 bg-white rounded-full border-2 border-black hidden lg:block"
-          style={{ mixBlendMode: 'difference', transition: 'width 0.2s, height 0.2s, background-color 0.2s, transform 0.1s' }} />
-
-        {/* Scroll progress bar */}
-        <div id="progressBar" className="fixed top-0 left-0 h-[3px] z-[60] border-b border-black"
-          style={{ width: '0%', background: '#FBFF48', boxShadow: '0 0 8px #FBFF48' }} />
+        <CustomCursor />
 
         {children}
 
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                var cursor = document.getElementById('cursor');
-                var progressBar = document.getElementById('progressBar');
+        {/* Google Analytics Placeholder */}
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+        )}
 
-                if (cursor) {
-                  document.addEventListener('mousemove', function(e) {
-                    cursor.style.left = e.clientX + 'px';
-                    cursor.style.top = e.clientY + 'px';
-                    cursor.style.transform = 'translate(-50%, -50%)';
-                  });
-
-                  document.addEventListener('mouseover', function(e) {
-                    var el = e.target;
-                    if (el && (el.tagName === 'A' || el.tagName === 'BUTTON' || el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'SELECT')) {
-                      cursor.style.width = '50px';
-                      cursor.style.height = '50px';
-                      cursor.style.backgroundColor = '#FBFF48';
-                      cursor.style.mixBlendMode = 'normal';
-                    } else {
-                      cursor.style.width = '24px';
-                      cursor.style.height = '24px';
-                      cursor.style.backgroundColor = '#fff';
-                      cursor.style.mixBlendMode = 'difference';
-                    }
-                  });
-                }
-
-                if (progressBar) {
-                  window.addEventListener('scroll', function() {
-                    var scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-                    progressBar.style.width = scrolled + '%';
-                  });
-                }
-              })();
-            `,
-          }}
-        />
+        {/* Google AdSense Placeholder */}
+        {process.env.NEXT_PUBLIC_ADSENSE_ID && (
+          <Script
+            id="adsbygoogle-init"
+            strategy="afterInteractive"
+            crossOrigin="anonymous"
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_ID}`}
+          />
+        )}
       </body>
     </html>
   )
