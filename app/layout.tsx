@@ -18,7 +18,7 @@ const spaceGrotesk = Space_Grotesk({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'https://roastmylp.com'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'https://roastmylpage.vercel.app'),
   title: 'RoastMyLP — AI Landing Page Roast & Rewrite Tool',
   description:
     'Get your landing page brutally roasted by AI in 30 seconds. Find out exactly why visitors leave without converting — and get a rewritten hero section instantly.',
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'RoastMyLP — Brutal AI Landing Page Roasts',
     description: 'Find out exactly why visitors leave without converting — and get a rewritten hero section instantly.',
-    url: 'https://roastmylp.com',
+    url: 'https://roastmylpage.vercel.app',
     siteName: 'RoastMyLP',
     type: 'website',
   },
